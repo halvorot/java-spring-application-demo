@@ -1,1 +1,1 @@
-# java-application-demo
+# Java spring application demo
