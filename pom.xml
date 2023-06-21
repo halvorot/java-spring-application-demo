@@ -64,7 +64,7 @@
 						<image>openjdk:${java.version}</image>
 					</from>
           			<to>
-            			<image>docker.io/halvorot/${project.artifactId}</image>
+            			<image>docker.io/${env.DOCKER_REGISTRY_USERNAME}/${project.artifactId}</image>
 						<tags>
 							<tag>${env.GITHUB_SHA}</tag>,
 							<tag>${project.version}</tag>
