@@ -21,4 +21,4 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: mvn help:active-profiles verify
+      run: mvn compile jib:build
