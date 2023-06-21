@@ -71,8 +71,8 @@
 							<tag>latest</tag>
 						</tags>
 						<auth>
-							<username>${secrets.DOCKER_REGISTRY_USERNAME}</username>
-							<password>${secrets.DOCKER_REGISTRY_PASSWORD}</password>
+							<username>${env.DOCKER_REGISTRY_USERNAME}</username>
+							<password>${env.DOCKER_REGISTRY_PASSWORD}</password>
 						</auth>
           			</to>
         		</configuration>
