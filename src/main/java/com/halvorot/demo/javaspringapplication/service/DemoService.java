@@ -1,7 +1,7 @@
 package com.halvorot.demo.javaspringapplication.service;
 
-import com.example.javaspringapplicationdemo.model.DemoObject;
-import com.example.javaspringapplicationdemo.repository.DemoRepository;
+import com.halvorot.demo.javaspringapplication.model.DemoObject;
+import com.halvorot.demo.javaspringapplication.repository.DemoRepository;
 import org.springframework.stereotype.Service;
 
 @Service

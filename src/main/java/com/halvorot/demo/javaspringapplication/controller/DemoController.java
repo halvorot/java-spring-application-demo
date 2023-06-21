@@ -1,7 +1,7 @@
 package com.halvorot.demo.javaspringapplication.controller;
 
-import com.example.javaspringapplicationdemo.model.DemoObject;
-import com.example.javaspringapplicationdemo.service.DemoService;
+import com.halvorot.demo.javaspringapplication.model.DemoObject;
+import com.halvorot.demo.javaspringapplication.service.DemoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

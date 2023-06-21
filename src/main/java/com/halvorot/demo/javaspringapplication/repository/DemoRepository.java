@@ -1,6 +1,6 @@
 package com.halvorot.demo.javaspringapplication.repository;
 
-import com.example.javaspringapplicationdemo.model.DemoObject;
+import com.halvorot.demo.javaspringapplication.model.DemoObject;
 import org.springframework.stereotype.Repository;
 
 @Repository
