@@ -55,8 +55,8 @@
 			<id>github-registry</id>
 			<activation>
 				<property>
-					<name>env.CONTAINER_PROFILE</name>
-					<value>github-registry</value>
+					<name>env.GITHUB_REF_NAME</name>
+					<value>!main</value>
 				</property>
 			</activation>
 			<properties>
@@ -75,8 +75,8 @@
 			<id>docker-registry</id>
 			<activation>
 				<property>
-					<name>env.CONTAINER_PROFILE</name>
-					<value>docker-registry</value>
+					<name>env.GITHUB_REF_NAME</name>
+					<value>main</value>
 				</property>
 			</activation>
 			<properties>
