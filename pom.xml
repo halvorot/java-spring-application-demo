@@ -16,13 +16,14 @@
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>17</java.version>
-		<jib.container.creationTime>USE_CURRENT_TIMESTAMP</jib.container.creationTime>
-		<jib.container.jvmFlags>-Duser.timezone=Europe/Oslo,-Duser.language=no,-Duser.country=NO</jib.container.jvmFlags>
-		<jib.container.ports>8080</jib.container.ports>
+        <jib.container.creationTime>USE_CURRENT_TIMESTAMP</jib.container.creationTime>
+        <jib.container.jvmFlags>-Duser.timezone=Europe/Oslo,-Duser.language=no,-Duser.country=NO</jib.container.jvmFlags>
+        <jib.container.ports>8080</jib.container.ports>
 
-		<jib-maven-plugin.version>3.3.2</jib-maven-plugin.version>
+        <jib-maven-plugin.version>3.3.2</jib-maven-plugin.version>
 		<mockito-junit-jupiter.version>5.3.1</mockito-junit-jupiter.version>
 		<junit-jupiter.version>5.9.3</junit-jupiter.version>
+		<jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -49,7 +50,7 @@
 		</dependency>
 	</dependencies>
 
-	<profiles>
+		<profiles>
 		<profile>
 			<id>github-registry</id>
 			<activation>
@@ -87,7 +88,7 @@
 		</profile>
 	</profiles>
 
-	<build>
+    <build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -95,14 +96,35 @@
 			</plugin>
 
 			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>${jacoco-maven-plugin.version}</version>
+				<executions>
+					<execution>
+						<id>default-prepare-agent</id>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>jacoco-report</id>
+						<phase>test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
 				<groupId>com.google.cloud.tools</groupId>
 				<artifactId>jib-maven-plugin</artifactId>
 				<version>${jib-maven-plugin.version}</version>
-				<configuration>
-					<from>
+				 <configuration>
+				 	<from>
 						<image>openjdk:${java.version}</image>
 					</from>
-				</configuration>
+        		</configuration>
 			</plugin>
 		</plugins>
 	</build>
