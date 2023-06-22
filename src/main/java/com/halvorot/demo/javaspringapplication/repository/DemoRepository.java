@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 public class DemoRepository {
 
     public DemoObject findDemoObject() {
-        return new DemoObject(1, "Demo name");
+        return new DemoObject(1, "Demo name!");
     }
 
 }
