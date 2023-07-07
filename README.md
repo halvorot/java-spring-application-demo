@@ -6,5 +6,5 @@ The application is set up with Google Jib for dockerizing and pushing the applic
 Run the application using Docker
 
 ```cmd
-docker run halvorot/java-spring-application:latest -p 8080:8080
+docker run -p 8080:8080 halvorot/java-spring-application:latest
 ```
