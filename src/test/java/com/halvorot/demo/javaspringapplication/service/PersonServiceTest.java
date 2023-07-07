@@ -16,9 +16,11 @@ import org.springframework.data.domain.Pageable;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.List;
+
 @ExtendWith(MockitoExtension.class)
 @DataJpaTest
-class DemoServiceTest {
+class PersonServiceTest {
     
     @Mock
     private PersonRepository personRepository;
@@ -41,17 +43,20 @@ class DemoServiceTest {
         personRepository.save(personEntity);
         personRepository.save(personEntity2);
 
+        System.out.println(personRepository.findAll());
 
         PersonService personService = new PersonService(personRepository);
 
         // Act
-        Page<PersonDto> personDto = personService.getPersonByFirstName("firstName", Pageable.unpaged());
+        Page<PersonDto> personPage = personService.getPersonByFirstName("firstName", Pageable.unpaged());
 
         // Assert
-        assertThat(personDto.ssn()).isEqualTo(personEntity.getSsn());
-        assertThat(personDto.firstName()).isEqualTo(personEntity.getFirstName());
-        assertThat(personDto.lastName()).isEqualTo(personEntity.getLastName());
-        assertThat(personDto.gender()).isEqualTo(personEntity.getGender());
+        List<PersonDto> personDtos = personPage.getContent();
+        assertThat(personDtos).hasSize(1);
+        assertThat(personDtos.get(0).ssn()).isEqualTo(personEntity.getSsn());
+        assertThat(personDtos.get(0).firstName()).isEqualTo(personEntity.getFirstName());
+        assertThat(personDtos.get(0).lastName()).isEqualTo(personEntity.getLastName());
+        assertThat(personDtos.get(0).gender()).isEqualTo(personEntity.getGender());
 
     }
 
