@@ -6,9 +6,7 @@ import com.halvorot.demo.javaspringapplication.enums.Gender;
 import com.halvorot.demo.javaspringapplication.repository.PersonRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentMatchers;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.data.domain.Page;
@@ -42,8 +40,6 @@ class PersonServiceTest {
         );
         personRepository.save(personEntity);
         personRepository.save(personEntity2);
-
-        System.out.println(personRepository.findAll());
 
         PersonService personService = new PersonService(personRepository);
 
