@@ -23,7 +23,7 @@
         <jib-maven-plugin.version>3.3.2</jib-maven-plugin.version>
 		<mockito-junit-jupiter.version>5.3.1</mockito-junit-jupiter.version>
 		<junit-jupiter.version>5.9.3</junit-jupiter.version>
-		<jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
+		<jacoco-maven-plugin.version>0.8.10</jacoco-maven-plugin.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -67,14 +67,9 @@
 				</property>
 			</activation>
 			<properties>
-				<!--suppress
-				UnresolvedMavenProperty -->
 				<jib.to.image>ghcr.io/halvorot/${project.artifactId}</jib.to.image>
-				<!--suppress
-				UnresolvedMavenProperty -->
+				<jib.to.tags>${env.GITHUB_SHA}</jib.to.tags>
 				<jib.to.auth.username>${env.GITHUB_CI_USERNAME}</jib.to.auth.username>
-				<!--suppress
-				UnresolvedMavenProperty -->
 				<jib.to.auth.password>${env.GITHUB_CI_PASSWORD}</jib.to.auth.password>
 			</properties>
 		</profile>
