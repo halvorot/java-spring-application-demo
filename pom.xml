@@ -136,4 +136,11 @@
 		</plugins>
 	</build>
 
+	<scm>
+	        <developerConnection>scm:git:https://github.com/halvorot/java-spring-application-demo.git</developerConnection>
+	        <url>git@github.com:halvorot/java-spring-application-demo.git</url>
+	        <tag>HEAD</tag>
+    	</scm>
+
+
 </project>
