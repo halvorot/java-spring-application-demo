@@ -1,22 +1,16 @@
 package com.halvorot.demo.javaspringapplication.controller;
 
 import com.halvorot.demo.javaspringapplication.dto.PersonDto;
-import com.halvorot.demo.javaspringapplication.entity.PersonEntity;
+import com.halvorot.demo.javaspringapplication.enums.Gender;
 import com.halvorot.demo.javaspringapplication.service.PersonService;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/v1")
 public class PersonController {
 
     private final PersonService personService;
@@ -26,21 +20,28 @@ public class PersonController {
     }
 
     @GetMapping("/persons")
-    public ResponseEntity<Page<PersonDto>> getData(
-        @RequestParam String firstName,
+    public ResponseEntity<Page<PersonDto>> getPersonsByProperties(
+        @RequestParam(required = false) String ssn,
+        @RequestParam(required = false) String firstName,
+        @RequestParam(required = false) String lastName,
+        @RequestParam(required = false) Gender gender,
         @RequestParam(defaultValue = "0") Integer pageNo,
-        @RequestParam(defaultValue = "15") Integer pageSize
+        @RequestParam(defaultValue = "15") Integer pageSize,
+        @RequestParam(defaultValue = "lastName") String sortBy
     ) {
-        Page<PersonDto> persons = personService.getPersonByFirstName(
+        Page<PersonDto> persons = personService.getPersonsByProperties(
+            ssn,
             firstName,
-            PageRequest.of(pageNo, pageSize, Sort.by("lastName").ascending())
+            lastName,
+            gender,
+            PageRequest.of(pageNo, pageSize, Sort.by(sortBy).ascending())
         );
         return ResponseEntity.ok(persons);
     }
 
-    @PostMapping("/persons/insert/random")
-    public ResponseEntity<PersonEntity> createPerson() {
-        return ResponseEntity.ok(personService.createPerson());
+    @PostMapping("/persons/create-random")
+    public ResponseEntity<PersonDto> createPerson() {
+        return ResponseEntity.ok(personService.createRandomPerson());
     }
 
 }

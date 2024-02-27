@@ -8,3 +8,7 @@ Run the application using Docker
 ```cmd
 docker run -p 8080:8080 halvorot/java-spring-application:latest
 ```
+
+The application is now running on http://localhost:8080
+
+The API docs are available on http://localhost:8080/v3/api-docs

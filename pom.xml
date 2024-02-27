@@ -1,146 +1,153 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.2.3</version>
-		<relativePath /> <!-- lookup parent from repository -->
-	</parent>
-	<groupId>com.halvorot.demo</groupId>
-	<artifactId>java-spring-application</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>java-spring-application</name>
-	<description>Demo project for Spring Boot</description>
-	<properties>
-		<java.version>17</java.version>
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.2.3</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>com.halvorot.demo</groupId>
+    <artifactId>java-spring-application</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>java-spring-application</name>
+    <description>Demo project for Spring Boot</description>
+    <properties>
+        <java.version>21</java.version>
         <jib.container.creationTime>USE_CURRENT_TIMESTAMP</jib.container.creationTime>
-        <jib.container.jvmFlags>-Duser.timezone=Europe/Oslo,-Duser.language=no,-Duser.country=NO</jib.container.jvmFlags>
+        <jib.container.jvmFlags>-Duser.timezone=Europe/Oslo,-Duser.language=no,-Duser.country=NO
+        </jib.container.jvmFlags>
         <jib.container.ports>8080</jib.container.ports>
 
         <jib-maven-plugin.version>3.4.0</jib-maven-plugin.version>
-		<mockito-junit-jupiter.version>5.10.0</mockito-junit-jupiter.version>
-		<junit-jupiter.version>5.10.2</junit-jupiter.version>
-		<jacoco-maven-plugin.version>0.8.11</jacoco-maven-plugin.version>
-	</properties>
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.mockito</groupId>
-			<artifactId>mockito-junit-jupiter</artifactId>
-			<version>${mockito-junit-jupiter.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter</artifactId>
-			<version>${junit-jupiter.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
+        <mockito-junit-jupiter.version>5.10.0</mockito-junit-jupiter.version>
+        <junit-jupiter.version>5.10.2</junit-jupiter.version>
+        <jacoco-maven-plugin.version>0.8.11</jacoco-maven-plugin.version>
+        <springdoc-openapi-starter-webmvc-ui.version>2.2.0</springdoc-openapi-starter-webmvc-ui.version>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-junit-jupiter</artifactId>
+            <version>${mockito-junit-jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit-jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <scope>runtime</scope>
         </dependency>
-		<dependency>
+        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
-	</dependencies>
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>${springdoc-openapi-starter-webmvc-ui.version}</version>
+        </dependency>
+    </dependencies>
 
-		<profiles>
-		<profile>
-			<id>github-registry</id>
-			<activation>
-				<property>
-					<name>env.GITHUB_REF_NAME</name>
-					<value>!main</value>
-				</property>
-			</activation>
-			<properties>
-				<jib.to.image>ghcr.io/halvorot/${project.artifactId}</jib.to.image>
-				<jib.to.tags>${env.GITHUB_SHA}</jib.to.tags>
-				<jib.to.auth.username>${env.GITHUB_CI_USERNAME}</jib.to.auth.username>
-				<jib.to.auth.password>${env.GITHUB_CI_PASSWORD}</jib.to.auth.password>
-			</properties>
-		</profile>
-		<profile>
-			<id>docker-registry</id>
-			<activation>
-				<property>
-					<name>env.GITHUB_REF_NAME</name>
-					<value>main</value>
-				</property>
-			</activation>
-			<properties>
-				<jib.to.image>docker.io/${env.DOCKER_REGISTRY_USERNAME}/${project.artifactId}</jib.to.image>
-				<jib.to.tags>${env.GITHUB_SHA},${project.version},latest</jib.to.tags>
-				<jib.to.auth.username>${env.DOCKER_REGISTRY_USERNAME}</jib.to.auth.username>
-				<jib.to.auth.password>${env.DOCKER_REGISTRY_PASSWORD}</jib.to.auth.password>
-			</properties>
-		</profile>
-	</profiles>
+    <profiles>
+        <profile>
+            <id>github-registry</id>
+            <activation>
+                <property>
+                    <name>env.GITHUB_REF_NAME</name>
+                    <value>!main</value>
+                </property>
+            </activation>
+            <properties>
+                <jib.to.image>ghcr.io/halvorot/${project.artifactId}</jib.to.image>
+                <jib.to.tags>${env.GITHUB_SHA}</jib.to.tags>
+                <jib.to.auth.username>${env.GITHUB_CI_USERNAME}</jib.to.auth.username>
+                <jib.to.auth.password>${env.GITHUB_CI_PASSWORD}</jib.to.auth.password>
+            </properties>
+        </profile>
+        <profile>
+            <id>docker-registry</id>
+            <activation>
+                <property>
+                    <name>env.GITHUB_REF_NAME</name>
+                    <value>main</value>
+                </property>
+            </activation>
+            <properties>
+                <jib.to.image>docker.io/${env.DOCKER_REGISTRY_USERNAME}/${project.artifactId}</jib.to.image>
+                <jib.to.tags>${env.GITHUB_SHA},${project.version},latest</jib.to.tags>
+                <jib.to.auth.username>${env.DOCKER_REGISTRY_USERNAME}</jib.to.auth.username>
+                <jib.to.auth.password>${env.DOCKER_REGISTRY_PASSWORD}</jib.to.auth.password>
+            </properties>
+        </profile>
+    </profiles>
 
     <build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
 
-			<plugin>
-				<groupId>org.jacoco</groupId>
-				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>${jacoco-maven-plugin.version}</version>
-				<executions>
-					<execution>
-						<id>default-prepare-agent</id>
-						<goals>
-							<goal>prepare-agent</goal>
-						</goals>
-					</execution>
-					<execution>
-						<id>jacoco-report</id>
-						<phase>test</phase>
-						<goals>
-							<goal>report</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacoco-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>default-prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>jacoco-report</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
 
-			<plugin>
-				<groupId>com.google.cloud.tools</groupId>
-				<artifactId>jib-maven-plugin</artifactId>
-				<version>${jib-maven-plugin.version}</version>
-				 <configuration>
-				 	<from>
-						<image>openjdk:${java.version}</image>
-					</from>
-        		</configuration>
-			</plugin>
-		</plugins>
-	</build>
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>${jib-maven-plugin.version}</version>
+                <configuration>
+                    <from>
+                        <image>openjdk:${java.version}</image>
+                    </from>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
-	<scm>
-	        <developerConnection>scm:git:https://github.com/halvorot/java-spring-application-demo.git</developerConnection>
-	        <url>git@github.com:halvorot/java-spring-application-demo.git</url>
-	        <tag>HEAD</tag>
-    	</scm>
+    <scm>
+        <developerConnection>scm:git:https://github.com/halvorot/java-spring-application-demo.git</developerConnection>
+        <url>git@github.com:halvorot/java-spring-application-demo.git</url>
+        <tag>HEAD</tag>
+    </scm>
 
 
 </project>
