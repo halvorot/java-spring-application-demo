@@ -6,7 +6,7 @@ The application is set up with Google Jib for dockerizing and pushing the applic
 Run the application using Docker
 
 ```cmd
-docker run -p 8080:8080 halvorot/java-spring-application:latest
+docker run -p 8080:8080 -d halvorot/java-spring-application:latest
 ```
 
 The application is now running on http://localhost:8080
