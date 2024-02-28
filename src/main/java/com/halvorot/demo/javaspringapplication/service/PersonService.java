@@ -17,9 +17,11 @@ import java.util.Random;
 public class PersonService {
 
     private final PersonRepository personRepository;
+    private final Random random;
 
-    public PersonService(final PersonRepository personRepository) {
+    public PersonService(final PersonRepository personRepository, final Random random) {
         this.personRepository = personRepository;
+        this.random = random;
     }
 
     public Page<PersonDto> getAll(final Pageable pageable) {
@@ -45,12 +47,11 @@ public class PersonService {
     }
 
     public PersonDto createRandomPerson() {
-        Random random = new Random();
         PersonEntity personEntity = personRepository.save(
             new PersonEntity(
                 String.format("%d", random.nextLong(999999999)),
-                StringUtils.generateRandomString(6),
-                StringUtils.generateRandomString(10),
+                StringUtils.generateRandomString(6, random),
+                StringUtils.generateRandomString(10, random),
                 random.nextBoolean() ? Gender.FEMALE : Gender.MALE,
                 random.nextInt(100)
             )

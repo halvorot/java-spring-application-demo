@@ -4,10 +4,13 @@ import java.util.Random;
 
 public class StringUtils {
 
-    public static String generateRandomString(int length) {
+    private StringUtils() {
+        // Hide default constructor
+    }
+
+    public static String generateRandomString(int length, Random random) {
         int asciiA = 97; // letter 'a'
         int asciiZ = 122; // letter 'z'
-        Random random = new Random();
 
         return random.ints(asciiA, asciiZ + 1)
             .limit(length)
