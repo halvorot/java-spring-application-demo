@@ -15,12 +15,15 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.H2Dialect
         format_sql: true
-
   flyway:
     enabled: true
     url: jdbc:h2:mem:testdb
     user: sa
     password: password
+
+  h2:
+    console:
+      enabled: true
 
 springdoc:
   swagger-ui:
