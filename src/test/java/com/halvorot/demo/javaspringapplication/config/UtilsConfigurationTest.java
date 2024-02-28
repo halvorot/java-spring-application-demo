@@ -2,7 +2,7 @@ package com.halvorot.demo.javaspringapplication.config;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Random;
+import java.security.SecureRandom;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -15,7 +15,7 @@ class UtilsConfigurationTest {
         UtilsConfiguration utilsConfiguration = new UtilsConfiguration();
 
         // Act
-        Random random = utilsConfiguration.random();
+        SecureRandom random = utilsConfiguration.secureRandom();
 
         // Assert
         assertThat(random).isNotNull();
