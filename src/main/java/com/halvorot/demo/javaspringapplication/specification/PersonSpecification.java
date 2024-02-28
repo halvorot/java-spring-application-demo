@@ -11,6 +11,10 @@ import java.util.List;
 
 public class PersonSpecification {
 
+    private PersonSpecification() {
+        // Hide default constructor
+    }
+
     public static Specification<PersonEntity> filterByProperties(
         @Nullable final String ssn,
         @Nullable final String firstName,

@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
+import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -41,7 +42,7 @@ class PersonServiceTest {
         personRepository.save(personEntity1);
         personRepository.save(personEntity2);
 
-        PersonService personService = new PersonService(personRepository);
+        PersonService personService = new PersonService(personRepository, new Random());
 
         // Act
         Page<PersonDto> allPersonsPage = personService.getAll(Pageable.unpaged());
@@ -68,14 +69,14 @@ class PersonServiceTest {
     }
 
     @Test
-    public void should_return_person_dto_with_valid_ssn() {
+    void should_return_person_dto_with_valid_ssn() {
 
         // Arrange
         String ssn = "123456789";
         PersonEntity personEntity = new PersonEntity(ssn, "firstName", "lastName", Gender.MALE, 20);
         personRepository.save(personEntity);
 
-        PersonService personService = new PersonService(personRepository);
+        PersonService personService = new PersonService(personRepository, new Random());
 
         // Act
         PersonDto result = personService.getPersonBySsn(ssn);
@@ -90,10 +91,10 @@ class PersonServiceTest {
     }
 
     @Test
-    public void should_return_null_when_no_persons_in_db() {
+    void should_return_null_when_no_persons_in_db() {
 
         // Arrange
-        PersonService personService = new PersonService(personRepository);
+        PersonService personService = new PersonService(personRepository, new Random());
 
         // Act
         PersonDto result = personService.getPersonBySsn("ssn");

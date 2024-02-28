@@ -2,6 +2,8 @@ package com.halvorot.demo.javaspringapplication.utils;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Random;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 class StringUtilsTest {
@@ -13,7 +15,7 @@ class StringUtilsTest {
         int length = 10;
 
         // Act
-        String randomString = StringUtils.generateRandomString(length);
+        String randomString = StringUtils.generateRandomString(length, new Random());
 
         // Assert
         assertThat(randomString)
@@ -26,7 +28,7 @@ class StringUtilsTest {
     void should_generate_empty_string_when_length_is_zero() {
 
         // Act
-        String randomString = StringUtils.generateRandomString(0);
+        String randomString = StringUtils.generateRandomString(0, new Random());
 
         // Assert
         assertThat(randomString)
