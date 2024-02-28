@@ -28,16 +28,21 @@ public class PersonEntity {
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
+    @Column(name = "AGE")
+    private Integer age;
+
     public PersonEntity(
         final String ssn,
         final String firstName,
         final String lastName,
-        final Gender gender
+        final Gender gender,
+        final Integer age
     ) {
         this.ssn = ssn;
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
+        this.age = age;
     }
 
 }

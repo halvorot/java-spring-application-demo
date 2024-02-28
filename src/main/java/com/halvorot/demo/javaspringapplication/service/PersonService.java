@@ -6,6 +6,7 @@ import com.halvorot.demo.javaspringapplication.enums.Gender;
 import com.halvorot.demo.javaspringapplication.mappers.MapEntityToDto;
 import com.halvorot.demo.javaspringapplication.repository.PersonRepository;
 import com.halvorot.demo.javaspringapplication.specification.PersonSpecification;
+import com.halvorot.demo.javaspringapplication.utils.StringUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -47,10 +48,11 @@ public class PersonService {
         Random random = new Random();
         PersonEntity personEntity = personRepository.save(
             new PersonEntity(
-                String.format("%d", random.nextInt(100)),
-                String.format("%d", random.nextInt(100)),
-                String.format("%d", random.nextInt(100)),
-                random.nextBoolean() ? Gender.FEMALE : Gender.MALE
+                String.format("%d", random.nextLong(999999999)),
+                StringUtils.generateRandomString(6),
+                StringUtils.generateRandomString(10),
+                random.nextBoolean() ? Gender.FEMALE : Gender.MALE,
+                random.nextInt(100)
             )
         );
         return MapEntityToDto.map(personEntity);

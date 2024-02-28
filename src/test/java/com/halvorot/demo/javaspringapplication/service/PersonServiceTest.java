@@ -25,16 +25,18 @@ class PersonServiceTest {
 
         // Arrange
         PersonEntity personEntity1 = new PersonEntity(
-                "ssn",
-                "firstName",
-                "lastName",
-                Gender.MALE
+            "ssn",
+            "firstName",
+            "lastName",
+            Gender.MALE,
+            20
         );
         PersonEntity personEntity2 = new PersonEntity(
-                "ssn2",
-                "firstName2",
-                "lastName2",
-                Gender.FEMALE
+            "ssn2",
+            "firstName2",
+            "lastName2",
+            Gender.FEMALE,
+            30
         );
         personRepository.save(personEntity1);
         personRepository.save(personEntity2);
@@ -47,21 +49,21 @@ class PersonServiceTest {
         // Assert
         List<PersonDto> allPersons = allPersonsPage.getContent();
         assertThat(allPersons)
-                .hasSize(2)
-                .anySatisfy(personDto -> {
-                            assertThat(personDto.ssn()).isEqualTo("ssn");
-                            assertThat(personDto.firstName()).isEqualTo("firstName");
-                            assertThat(personDto.lastName()).isEqualTo("lastName");
-                            assertThat(personDto.gender()).isEqualTo(Gender.MALE);
-                        }
-                )
-                .anySatisfy(personDto -> {
-                            assertThat(personDto.ssn()).isEqualTo("ssn2");
-                            assertThat(personDto.firstName()).isEqualTo("firstName2");
-                            assertThat(personDto.lastName()).isEqualTo("lastName2");
-                            assertThat(personDto.gender()).isEqualTo(Gender.FEMALE);
-                        }
-                );
+            .hasSize(2)
+            .anySatisfy(personDto -> {
+                    assertThat(personDto.ssn()).isEqualTo("ssn");
+                    assertThat(personDto.firstName()).isEqualTo("firstName");
+                    assertThat(personDto.lastName()).isEqualTo("lastName");
+                    assertThat(personDto.gender()).isEqualTo(Gender.MALE);
+                }
+            )
+            .anySatisfy(personDto -> {
+                    assertThat(personDto.ssn()).isEqualTo("ssn2");
+                    assertThat(personDto.firstName()).isEqualTo("firstName2");
+                    assertThat(personDto.lastName()).isEqualTo("lastName2");
+                    assertThat(personDto.gender()).isEqualTo(Gender.FEMALE);
+                }
+            );
 
     }
 
@@ -70,7 +72,7 @@ class PersonServiceTest {
 
         // Arrange
         String ssn = "123456789";
-        PersonEntity personEntity = new PersonEntity(ssn, "firstName", "lastName", Gender.MALE);
+        PersonEntity personEntity = new PersonEntity(ssn, "firstName", "lastName", Gender.MALE, 20);
         personRepository.save(personEntity);
 
         PersonService personService = new PersonService(personRepository);
