@@ -21,7 +21,7 @@
         </jib.container.jvmFlags>
         <jib.container.ports>8080</jib.container.ports>
 
-        <jib-maven-plugin.version>3.4.3</jib-maven-plugin.version>
+        <jib-maven-plugin.version>3.4.4</jib-maven-plugin.version>
         <mockito-junit-jupiter.version>5.14.2</mockito-junit-jupiter.version>
         <junit-jupiter.version>5.11.2</junit-jupiter.version>
         <jacoco-maven-plugin.version>0.8.12</jacoco-maven-plugin.version>
