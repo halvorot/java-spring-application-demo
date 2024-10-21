@@ -23,7 +23,7 @@
 
         <jib-maven-plugin.version>3.4.4</jib-maven-plugin.version>
         <mockito-junit-jupiter.version>5.14.2</mockito-junit-jupiter.version>
-        <junit-jupiter.version>5.11.2</junit-jupiter.version>
+        <junit-jupiter.version>5.11.3</junit-jupiter.version>
         <jacoco-maven-plugin.version>0.8.12</jacoco-maven-plugin.version>
         <springdoc-openapi-starter-webmvc-ui.version>2.6.0</springdoc-openapi-starter-webmvc-ui.version>
         <flyway-core.version>10.20.0</flyway-core.version>
