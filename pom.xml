@@ -26,7 +26,7 @@
         <junit-jupiter.version>5.14.0</junit-jupiter.version>
         <jacoco-maven-plugin.version>0.8.13</jacoco-maven-plugin.version>
         <springdoc-openapi-starter-webmvc-ui.version>2.8.13</springdoc-openapi-starter-webmvc-ui.version>
-        <flyway-core.version>11.13.2</flyway-core.version>
+        <flyway-core.version>11.13.3</flyway-core.version>
     </properties>
     <dependencies>
         <dependency>
